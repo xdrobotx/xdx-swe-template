@@ -188,4 +188,4 @@ function createEmptyUsage(): SubagentUsage {
 }
 
 // Re-export pure message utilities for testability
-export { getFinalOutput, getDisplayItems } from "./message-utils.ts";
+export { getFinalOutput, getDisplayItems } from "./utl-message-utils.ts";

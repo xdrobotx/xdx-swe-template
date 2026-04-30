@@ -1,5 +1,5 @@
 /**
- * Unit tests for subagent-runner.ts
+ * Unit tests for ext-subagent-runner.ts
  *
  * Tests: getFinalOutput(), getDisplayItems()
  * Uses Node.js built-in `node:test` + `node:assert`.
@@ -10,7 +10,7 @@
 import { describe, it } from "node:test";
 import assert from "node:assert";
 import type { Message } from "@mariozechner/pi-ai";
-import { getFinalOutput, getDisplayItems } from "../../lib/message-utils.ts";
+import { getFinalOutput, getDisplayItems } from "../../lib/utl-message-utils.ts";
 
 // ─── Helper: create a text message ──────────────────────────────────────────
 

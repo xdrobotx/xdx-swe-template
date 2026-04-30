@@ -17,7 +17,7 @@ import * as fs from "node:fs";
 import * as path from "node:path";
 import * as os from "node:os";
 import { spawn } from "node:child_process";
-import { formatTokens } from "./result-formatters.ts";
+import { formatTokens } from "./utl-result-formatters.ts";
 
 // ─── Test Configuration ─────────────────────────────────────────────────────
 
@@ -341,7 +341,7 @@ Structure your response with clear sections (##, ###), include text-based diagra
 
 // ─── Helpers ────────────────────────────────────────────────────────────────
 
-// formatTokens is imported from result-formatters.ts
+// formatTokens is imported from utl-result-formatters.ts
 
 // ─── Run ────────────────────────────────────────────────────────────────────
 

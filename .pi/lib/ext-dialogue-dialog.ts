@@ -18,7 +18,7 @@ import {
   type InteractiveDialogueRunner,
 } from "./types.ts";
 import { getMarkdownTheme, type ExtensionAPI } from "@mariozechner/pi-coding-agent";
-import { getFinalOutput, runSubagent } from "./subagent-runner.ts";
+import { getFinalOutput, runSubagent } from "./ext-subagent-runner.ts";
 
 // ─── Interactive Dialogue Runner ────────────────────────────────────────────
 

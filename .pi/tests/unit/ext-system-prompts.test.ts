@@ -1,5 +1,5 @@
 /**
- * Unit tests for system-prompts.ts
+ * Unit tests for ext-system-prompts.ts
  *
  * Tests: buildSystemPrompt()
  * Uses Node.js built-in `node:test` + `node:assert`.
@@ -9,8 +9,8 @@
 
 import { describe, it } from "node:test";
 import assert from "node:assert";
-import { buildSystemPrompt } from "../../lib/system-prompts.ts";
-import type { PromptBuilderOptions } from "../../lib/pure-types.ts";
+import { buildSystemPrompt } from "../../lib/ext-system-prompts.ts";
+import type { PromptBuilderOptions } from "../../lib/types.ts";
 
 // ─── buildSystemPrompt ──────────────────────────────────────────────────────
 

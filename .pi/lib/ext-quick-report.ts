@@ -1,10 +1,10 @@
 /**
  * Quick report spawner.
- * Separated from system-prompts.ts to avoid pulling in @mariozechner/pi-coding-agent.
+ * Separated from ext-system-prompts.ts to avoid pulling in @mariozechner/pi-coding-agent.
  */
 
-import type { SubagentResult, SubagentDetails, SpawnerResult } from "./pure-types.ts";
-import { getFinalOutput } from "./message-utils.ts";
+import type { SubagentResult, SubagentDetails, SpawnerResult } from "./types.ts";
+import { getFinalOutput } from "./utl-message-utils.ts";
 
 export async function spawnQuickReport(
   cwd: string,
@@ -15,7 +15,7 @@ export async function spawnQuickReport(
   onUpdate: ((partial: import("@mariozechner/pi-agent-core").AgentToolResult<SubagentDetails>) => void) | undefined,
   makeDetails: (results: SubagentResult[]) => SubagentDetails,
 ): Promise<SpawnerResult> {
-  const { runSubagent } = await import("./subagent-runner.ts");
+  const { runSubagent } = await import("./ext-subagent-runner.ts");
   const result = await runSubagent(cwd, task, systemPrompt, tools, signal, onUpdate, makeDetails);
   const isError = result.exitCode !== 0 || result.stopReason === "error" || result.stopReason === "aborted";
   if (isError) {

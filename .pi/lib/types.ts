@@ -115,3 +115,21 @@ export type ToolResultRenderer = (
   context: unknown,
   renderOptions: RenderOptions,
 ) => Component;
+
+// ─── Prompt Builder ─────────────────────────────────────────────────────────
+
+/**
+ * Options for constructing system prompts via buildSystemPrompt().
+ * Used by all agent extensions.
+ */
+export interface PromptBuilderOptions {
+  role: string;
+  modeLabel: string;
+  topic: string;
+  depthModifier?: string;
+  restrictions: string[];
+  allowedExtensions: string[];
+  workflow: string[];
+  domainInfo?: string;
+  reportingInstructions?: string;
+}

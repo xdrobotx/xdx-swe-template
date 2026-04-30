@@ -2,7 +2,7 @@
  * Pure message processing utilities.
  *
  * These functions operate on Message arrays with no external dependencies.
- * Used by subagent-runner.ts and result-renderer.ts.
+ * Used by ext-subagent-runner.ts and ext-result-renderer.ts.
  */
 
 import type { Message } from "@mariozechner/pi-ai";

@@ -2,7 +2,7 @@
  * Pure formatting utilities for subagent results.
  *
  * These functions have no external dependencies and can be tested in isolation.
- * Used by result-renderer.ts for TUI display.
+ * Used by ext-result-renderer.ts for TUI display.
  */
 
 import * as os from "node:os";

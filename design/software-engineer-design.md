@@ -433,16 +433,15 @@ You are a software engineering specialist.
 │   └── software-engineer.ts            ← NEW (single file, ~250-350 lines)
 ├── lib/
 │   ├── index.ts
-│   ├── types.ts
-│   ├── pure-types.ts
-│   ├── subagent-runner.ts
-│   ├── dialogue-dialog.ts
-│   ├── result-renderer.ts
-│   ├── system-prompts.ts
-│   ├── quick-report.ts
-│   ├── message-utils.ts
-│   ├── result-formatters.ts
-│   ├── playground.ts
+│   ├── types.ts                         # Shared TypeScript types (merged from types + pure-types)
+│   ├── ext-subagent-runner.ts          # Subagent spawning infrastructure
+│   ├── ext-dialogue-dialog.ts          # Interactive dialogue TUI component
+│   ├── ext-result-renderer.ts          # Result rendering utilities
+│   ├── ext-system-prompts.ts           # System prompt builder
+│   ├── ext-quick-report.ts             # Quick report with live progress
+│   ├── utl-message-utils.ts            # Message parsing utilities
+│   ├── utl-result-formatters.ts        # Token/usage formatting utilities
+│   ├── dev-playground.ts               # Development playground
 │   ├── swe-traceability.ts             ← NEW
 │   ├── swe-skill-manager.ts            ← NEW
 │   ├── swe-build-proposer.ts           ← NEW
@@ -519,7 +518,7 @@ You are a software engineering specialist.
 - `@mariozechner/pi-coding-agent/examples/extensions/` — Extension examples
 - `.pi/extensions/collaborator-agent.ts` — Reference implementation (~350 lines)
 - `.pi/extensions/systems-engineer.ts` — Reference implementation (~260 lines)
-- `.pi/lib/subagent-runner.ts` — Core subagent spawning mechanism
-- `.pi/lib/dialogue-dialog.ts` — Interactive dialogue TUI component
-- `.pi/lib/result-renderer.ts` — Result rendering utilities
-- `.pi/lib/system-prompts.ts` — System prompt builder
+- `.pi/lib/ext-subagent-runner.ts` — Core subagent spawning mechanism
+- `.pi/lib/ext-dialogue-dialog.ts` — Interactive dialogue TUI component
+- `.pi/lib/ext-result-renderer.ts` — Result rendering utilities
+- `.pi/lib/ext-system-prompts.ts` — System prompt builder

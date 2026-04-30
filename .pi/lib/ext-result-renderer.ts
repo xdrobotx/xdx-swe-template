@@ -4,7 +4,7 @@
  * Provides shared formatting functions and the result renderer
  * used by ALL agent extensions for consistent TUI display.
  *
- * Pure formatting utilities are in result-formatters.ts for testability.
+ * Pure formatting utilities are in utl-result-formatters.ts for testability.
  */
 
 import {
@@ -22,13 +22,13 @@ import {
   type SubagentDetails,
   type ToolResultRenderer,
 } from "./types.ts";
-import { getFinalOutput, getDisplayItems } from "./subagent-runner.ts";
+import { getFinalOutput, getDisplayItems } from "./ext-subagent-runner.ts";
 import { getMarkdownTheme, type ExtensionAPI } from "@mariozechner/pi-coding-agent";
 import {
   formatTokens,
   formatUsage,
   formatToolCall,
-} from "./result-formatters.ts";
+} from "./utl-result-formatters.ts";
 
 // ─── Constants ──────────────────────────────────────────────────────────────
 

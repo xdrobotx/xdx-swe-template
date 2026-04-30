@@ -11,8 +11,8 @@ import { describe, it, before } from "node:test";
 import assert from "node:assert";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { getFinalOutput, getDisplayItems } from "../../lib/message-utils.ts";
-import { formatUsage } from "../../lib/result-formatters.ts";
+import { getFinalOutput, getDisplayItems } from "../../lib/utl-message-utils.ts";
+import { formatUsage } from "../../lib/utl-result-formatters.ts";
 import type { Message } from "@mariozechner/pi-ai";
 import type { SubagentResult } from "../../lib/types.ts";
 

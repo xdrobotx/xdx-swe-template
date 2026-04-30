@@ -64,25 +64,25 @@ export type {
 export {
   getFinalOutput,
   getDisplayItems,
-} from "./message-utils.ts";
+} from "./utl-message-utils.ts";
 
 // ─── Subagent Runner ────────────────────────────────────────────────────────
 
 export {
   runSubagent,
-} from "./subagent-runner.ts";
+} from "./ext-subagent-runner.ts";
 
 // ─── Interactive Dialogue ───────────────────────────────────────────────────
 
 export {
   runInteractiveDialogue,
-} from "./dialogue-dialog.ts";
+} from "./ext-dialogue-dialog.ts";
 
 // ─── Result Renderer ────────────────────────────────────────────────────────
 
 export {
   renderToolResult,
-} from "./result-renderer.ts";
+} from "./ext-result-renderer.ts";
 
 // ─── Result Formatters (pure utilities, no external deps) ───────────────────
 
@@ -90,14 +90,14 @@ export {
   formatTokens,
   formatUsage,
   formatToolCall,
-} from "./result-formatters.ts";
+} from "./utl-result-formatters.ts";
 
 // ─── System Prompts ─────────────────────────────────────────────────────────
 
 export {
   buildSystemPrompt,
   spawnQuickReport,
-} from "./system-prompts.ts";
+} from "./ext-system-prompts.ts";
 
 // ─── Software Engineer Lib (SWE extensions) ─────────────────────────────────
 

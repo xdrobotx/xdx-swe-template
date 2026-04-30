@@ -6,7 +6,7 @@
  * from ../lib/.
  *
  * Three interaction modes:
- *   1. `/system-design <topic>` / `/system-requirements <topic>` / `/system-architecture <topic>`
+ *   1. `/sys-design <topic>` / `/sys-requirements <topic>` / `/sys-architecture <topic>`
  *      — Quick reports with live progress
  *   2. Interactive dialogue sessions (same commands with follow-up)
  */
@@ -133,9 +133,9 @@ export default function (pi: ExtensionAPI) {
     },
   });
 
-  // ── Command: /system-design (interactive dialogue) ──
+  // ── Command: /sys-design (interactive dialogue) ──
 
-  pi.registerCommand("system-design", {
+  pi.registerCommand("sys-design", {
     description: "System design. Generates component models, interfaces, data flows, and behavior diagrams.",
     handler: async (args, ctx) => {
       if (!args || !args.trim()) {
@@ -173,9 +173,9 @@ export default function (pi: ExtensionAPI) {
     },
   });
 
-  // ── Command: /system-requirements (interactive dialogue) ──
+  // ── Command: /sys-requirements (interactive dialogue) ──
 
-  pi.registerCommand("system-requirements", {
+  pi.registerCommand("sys-requirements", {
     description: "Requirements engineering. Generates formal (IEEE 830) or lightweight (user story) requirements.",
     handler: async (args, ctx) => {
       if (!args || !args.trim()) {
@@ -213,9 +213,9 @@ export default function (pi: ExtensionAPI) {
     },
   });
 
-  // ── Command: /system-architecture (interactive dialogue) ──
+  // ── Command: /sys-architecture (interactive dialogue) ──
 
-  pi.registerCommand("system-architecture", {
+  pi.registerCommand("sys-architecture", {
     description: "System architecture. Generates structural decomposition, technology selection, and deployment views.",
     handler: async (args, ctx) => {
       if (!args || !args.trim()) {

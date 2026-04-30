@@ -5,9 +5,9 @@
  * workflow instructions, and domain-specific customization points.
  */
 
-import type { PromptBuilderOptions } from "./pure-types.ts";
-import { getFinalOutput } from "./message-utils.ts";
-import { spawnQuickReport as _spawnQuickReport } from "./quick-report.ts";
+import type { PromptBuilderOptions } from "./types.ts";
+import { getFinalOutput } from "./utl-message-utils.ts";
+import { spawnQuickReport as _spawnQuickReport } from "./ext-quick-report.ts";
 
 // ─── Base Prompt Builder ────────────────────────────────────────────────────
 
@@ -73,5 +73,5 @@ You HAVE access to \`read\`, \`write\`, \`edit\`, \`bash\`, \`find\`, \`grep\`, 
 
 // ─── Re-export helpers ──────────────────────────────────────────────────────
 
-export { getFinalOutput } from "./message-utils.ts";
-export { spawnQuickReport } from "./quick-report.ts";
+export { getFinalOutput } from "./utl-message-utils.ts";
+export { spawnQuickReport } from "./ext-quick-report.ts";

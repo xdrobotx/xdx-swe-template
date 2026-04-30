@@ -15,16 +15,16 @@ All agent extensions import from `../lib/` to avoid code duplication. The shared
 
 | Function | Purpose | File |
 |----------|---------|------|
-| `runSubagent()` | Spawns pi subprocess, parses JSONL output | `subagent-runner.ts` |
-| `runInteractiveDialogue()` | Interactive TUI dialogue component | `dialogue-dialog.ts` |
-| `renderToolResult()` | Expanded/collapsed TUI display | `result-renderer.ts` |
-| `buildSystemPrompt()` | Structured prompt generation | `system-prompts.ts` |
-| `spawnQuickReport()` | Quick single-shot report with live progress | `quick-report.ts` |
-| `getFinalOutput()` | Extract final text from messages | `message-utils.ts` |
-| `getDisplayItems()` | Extract display items from messages | `message-utils.ts` |
-| `formatTokens()` | Format token counts | `result-formatters.ts` |
-| `formatUsage()` | Format usage/cost display | `result-formatters.ts` |
-| `formatToolCall()` | Format tool call display | `result-formatters.ts` |
+| `runSubagent()` | Spawns pi subprocess, parses JSONL output | `ext-subagent-runner.ts` |
+| `runInteractiveDialogue()` | Interactive TUI dialogue component | `ext-dialogue-dialog.ts` |
+| `renderToolResult()` | Expanded/collapsed TUI display | `ext-result-renderer.ts` |
+| `buildSystemPrompt()` | Structured prompt generation | `ext-system-prompts.ts` |
+| `spawnQuickReport()` | Quick single-shot report with live progress | `ext-quick-report.ts` |
+| `getFinalOutput()` | Extract final text from messages | `utl-message-utils.ts` |
+| `getDisplayItems()` | Extract display items from messages | `utl-message-utils.ts` |
+| `formatTokens()` | Format token counts | `utl-result-formatters.ts` |
+| `formatUsage()` | Format usage/cost display | `utl-result-formatters.ts` |
+| `formatToolCall()` | Format tool call display | `utl-result-formatters.ts` |
 
 **Import pattern:**
 ```typescript
@@ -331,7 +331,7 @@ npx tsx .pi/tests/golden/run.ts
    ```typescript
    import { describe, it, before, assert } from "node:test";
    import { readFileSync } from "node:fs";
-   import { runSubagent } from "../../lib/subagent-runner.ts";
+   import { runSubagent } from "../../lib/ext-subagent-runner.ts";
 
    describe("parseMyExtensionOutput", () => {
      it("parses fixture correctly", async () => {
@@ -384,9 +384,9 @@ for (const file of files) {
 │   └── my-extension-output.jsonl    # New fixture
 ├── unit/
 │   ├── run.ts
-│   ├── result-renderer.test.ts
-│   ├── subagent-runner.test.ts
-│   └── system-prompts.test.ts
+│   ├── ext-result-renderer.test.ts
+│   ├── ext-subagent-runner.test.ts
+│   └── ext-system-prompts.test.ts
 ├── mocked/
 │   ├── run.ts
 │   └── pipeline.test.ts
@@ -468,5 +468,5 @@ touch .pi/tests/fixtures/my-extension-output.jsonl
 npm test
 
 # 6. Test manually with the playground
-npx tsx .pi/lib/playground.ts "Test topic" all
+npx tsx .pi/lib/dev-playground.ts "Test topic" all
 ```

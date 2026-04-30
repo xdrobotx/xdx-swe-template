@@ -12,7 +12,7 @@ import { describe, it, before } from "node:test";
 import assert from "node:assert";
 import * as fs from "node:fs";
 import * as path from "node:path";
-import { getFinalOutput } from "../../lib/message-utils.ts";
+import { getFinalOutput } from "../../lib/utl-message-utils.ts";
 import type { Message } from "@mariozechner/pi-ai";
 
 // ─── Fixture loader ─────────────────────────────────────────────────────────

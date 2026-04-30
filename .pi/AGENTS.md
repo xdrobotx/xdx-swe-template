@@ -62,7 +62,7 @@ A read-only subagent extension is available for exploration, research, and idea 
 | Feasibility studies | Call `collaborate` tool with `mode: "study"` |
 | Research on technologies/libraries | Call `collaborate` tool with `mode: "research"` |
 | Interactive deep-dive (user wants back-and-forth) | Suggest `/brainstorm`, `/feasibility`, or `/research` command |
-| Quick single-shot analysis | Call `collaborate` tool directly |
+| Quick single-shot analysis | Call `collaborate` tool directly or use `/collaborate` |
 
 ### Collaboration Workflow
 
@@ -73,20 +73,25 @@ A read-only subagent extension is available for exploration, research, and idea 
 5. **Present** recommendations to the user
 6. If the user wants to go deeper, suggest an **interactive dialogue** command (`/brainstorm`, `/feasibility`, `/research`)
 
-### Interactive Dialogue Commands
+### Command Types
 
-The user can start an interactive multi-turn session with:
+The Collaborator Agent provides two types of commands:
+
+**Quick Report** — Single-shot analysis with live progress:
+- `/collaborate <mode> <topic> [depth]` — One-pass report (study, research, or brainstorm mode)
+  - Modes: `study`, `research`, `brainstorm`
+  - Depth: `quick`, `standard`, `deep` (optional)
+  - Returns a complete report in a single pass
+
+**Interactive Dialogue** — Multi-turn back-and-forth sessions:
 - `/brainstorm <topic>` — Back-and-forth idea exchange
 - `/feasibility <topic>` — Discuss trade-offs, risks, and recommendations
 - `/research <topic>` — Gather info, compare options, answer follow-up questions
+  - Opens a custom TUI component for iterative conversation
+  - Agent shares insights, asks questions, user responds
+  - Type `quit` to end the session
 
-These commands open a custom TUI component where the collaborator shares insights, asks questions, and the user responds iteratively. Type `quit` to end the session.
-
-### Quick Report Command
-
-- `/collaborate <mode> <topic> [depth]` — Single-shot report with live progress
-  - Modes: `study`, `research`, `brainstorm`
-  - Depth: `quick`, `standard`, `deep` (optional)
+### Important Constraints
 
 ### Important Constraints
 
@@ -118,7 +123,7 @@ A subagent extension responsible for **systems design, architecture, and require
 | System design (components, interfaces, data flows) | Call `systems_engineer` tool with `mode: "design"` |
 | Requirements engineering (formal or lightweight) | Call `systems_engineer` tool with `mode: "requirements"` |
 | System architecture (structure, deployment, tech selection) | Call `systems_engineer` tool with `mode: "architecture"` |
-| Interactive deep-dive on design/architecture | Suggest `/system-design`, `/system-requirements`, or `/system-architecture` command |
+| Interactive deep-dive on design/architecture | Suggest `/sys-design`, `/sys-requirements`, or `/sys-architecture` command |
 
 ### Collaboration Workflow
 
@@ -132,9 +137,9 @@ The systems engineer should **always**:
 
 ### Interactive Dialogue Commands
 
-- `/system-design <topic>` — Component models, interfaces, data flows, behavior diagrams
-- `/system-requirements <topic>` — Formal (IEEE 830) or lightweight (user story) requirements
-- `/system-architecture <topic>` — Structural decomposition, technology selection, deployment views
+- `/sys-design <topic>` — Component models, interfaces, data flows, behavior diagrams
+- `/sys-requirements <topic>` — Formal (IEEE 830) or lightweight (user story) requirements
+- `/sys-architecture <topic>` — Structural decomposition, technology selection, deployment views
 
 These commands open a custom TUI component for interactive design dialogue. Type `quit` to end.
 
@@ -191,16 +196,16 @@ All agent extensions import from `../lib/` to avoid code duplication. The shared
 
 | Function | Purpose | File |
 |----------|---------|------|
-| `runSubagent()` | Spawns pi subprocess, parses JSONL output | `subagent-runner.ts` |
-| `runInteractiveDialogue()` | Interactive TUI dialogue component | `dialogue-dialog.ts` |
-| `renderToolResult()` | Expanded/collapsed TUI display | `result-renderer.ts` |
-| `buildSystemPrompt()` | Structured prompt generation | `system-prompts.ts` |
-| `spawnQuickReport()` | Quick single-shot report with live progress | `quick-report.ts` |
-| `getFinalOutput()` | Extract final text from messages | `message-utils.ts` |
-| `getDisplayItems()` | Extract display items from messages | `message-utils.ts` |
-| `formatTokens()` | Format token counts | `result-formatters.ts` |
-| `formatUsage()` | Format usage/cost display | `result-formatters.ts` |
-| `formatToolCall()` | Format tool call display | `result-formatters.ts` |
+| `runSubagent()` | Spawns pi subprocess, parses JSONL output | `ext-subagent-runner.ts` |
+| `runInteractiveDialogue()` | Interactive TUI dialogue component | `ext-dialogue-dialog.ts` |
+| `renderToolResult()` | Expanded/collapsed TUI display | `ext-result-renderer.ts` |
+| `buildSystemPrompt()` | Structured prompt generation | `ext-system-prompts.ts` |
+| `spawnQuickReport()` | Quick single-shot report with live progress | `ext-quick-report.ts` |
+| `getFinalOutput()` | Extract final text from messages | `utl-message-utils.ts` |
+| `getDisplayItems()` | Extract display items from messages | `utl-message-utils.ts` |
+| `formatTokens()` | Format token counts | `utl-result-formatters.ts` |
+| `formatUsage()` | Format usage/cost display | `utl-result-formatters.ts` |
+| `formatToolCall()` | Format tool call display | `utl-result-formatters.ts` |
 
 **Import pattern:**
 ```typescript
@@ -507,7 +512,7 @@ npx tsx .pi/tests/golden/run.ts
    ```typescript
    import { describe, it, before, assert } from "node:test";
    import { readFileSync } from "node:fs";
-   import { runSubagent } from "../../lib/subagent-runner.ts";
+   import { runSubagent } from "../../lib/ext-subagent-runner.ts";
 
    describe("parseMyExtensionOutput", () => {
      it("parses fixture correctly", async () => {
@@ -560,9 +565,9 @@ for (const file of files) {
 │   └── my-extension-output.jsonl    # New fixture
 ├── unit/
 │   ├── run.ts
-│   ├── result-renderer.test.ts
-│   ├── subagent-runner.test.ts
-│   └── system-prompts.test.ts
+│   ├── ext-result-renderer.test.ts
+│   ├── ext-subagent-runner.test.ts
+│   └── ext-system-prompts.test.ts
 ├── mocked/
 │   ├── run.ts
 │   └── pipeline.test.ts
@@ -644,5 +649,5 @@ touch .pi/tests/fixtures/my-extension-output.jsonl
 npm test
 
 # 6. Test manually with the playground
-npx tsx .pi/lib/playground.ts "Test topic" all
+npx tsx .pi/lib/dev-playground.ts "Test topic" all
 ```

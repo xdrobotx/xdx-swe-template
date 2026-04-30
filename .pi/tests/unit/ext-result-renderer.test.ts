@@ -1,5 +1,5 @@
 /**
- * Unit tests for result-renderer.ts
+ * Unit tests for ext-result-renderer.ts
  *
  * Tests: formatTokens(), formatUsage(), formatToolCall()
  * Uses Node.js built-in `node:test` + `node:assert`.
@@ -10,7 +10,7 @@
 import { describe, it } from "node:test";
 import assert from "node:assert";
 import os from "node:os";
-import { formatTokens, formatUsage, formatToolCall } from "../../lib/result-formatters.ts";
+import { formatTokens, formatUsage, formatToolCall } from "../../lib/utl-result-formatters.ts";
 
 // ─── formatTokens ────────────────────────────────────────────────────────────
 
