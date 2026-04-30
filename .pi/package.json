@@ -1,0 +1,24 @@
+{
+  "name": "vsw",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node --import tsx --test tests/**/*.test.ts"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acnx-org/virtual-systems-workbench.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/acnx-org/virtual-systems-workbench/issues"
+  },
+  "homepage": "https://github.com/acnx-org/virtual-systems-workbench#readme",
+  "devDependencies": {
+    "tsx": "^4.21.0"
+  }
+}

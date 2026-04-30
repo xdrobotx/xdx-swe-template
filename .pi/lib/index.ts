@@ -1,0 +1,87 @@
+/**
+ * Shared subagent library for Pi extension agents.
+ *
+ * Provides common infrastructure for spawning subagents, interactive dialogue,
+ * result rendering, and system prompt construction. Used by all agent extensions
+ * (collaborator-agent, systems-engineer, etc.) to avoid code duplication.
+ *
+ ## Usage
+
+```typescript
+import {
+  runSubagent,
+  runInteractiveDialogue,
+  renderToolResult,
+  buildSystemPrompt,
+  spawnQuickReport,
+  formatTokens,
+  formatUsage,
+  formatToolCall,
+  getFinalOutput,
+  getDisplayItems,
+  type SubagentResult,
+  type SubagentDetails,
+  type DialogueContext,
+  type RenderOptions,
+  type PromptBuilderOptions,
+} from "../lib";
+```
+ */
+
+// ─── Types ──────────────────────────────────────────────────────────────────
+
+export type {
+  SubagentResult,
+  SubagentUsage,
+  SubagentDetails,
+  DisplayItem,
+  TextItem,
+  ToolCallItem,
+  DialogueContext,
+  RenderOptions,
+  SpawnerResult,
+  SubagentRunner,
+  InteractiveDialogueRunner,
+  ToolResultRenderer,
+  PromptBuilderOptions,
+} from "./types.ts";
+
+// ─── Message Utilities (pure, no external deps) ─────────────────────────────
+
+export {
+  getFinalOutput,
+  getDisplayItems,
+} from "./message-utils.ts";
+
+// ─── Subagent Runner ────────────────────────────────────────────────────────
+
+export {
+  runSubagent,
+} from "./subagent-runner.ts";
+
+// ─── Interactive Dialogue ───────────────────────────────────────────────────
+
+export {
+  runInteractiveDialogue,
+} from "./dialogue-dialog.ts";
+
+// ─── Result Renderer ────────────────────────────────────────────────────────
+
+export {
+  renderToolResult,
+} from "./result-renderer.ts";
+
+// ─── Result Formatters (pure utilities, no external deps) ───────────────────
+
+export {
+  formatTokens,
+  formatUsage,
+  formatToolCall,
+} from "./result-formatters.ts";
+
+// ─── System Prompts ─────────────────────────────────────────────────────────
+
+export {
+  buildSystemPrompt,
+  spawnQuickReport,
+} from "./system-prompts.ts";
