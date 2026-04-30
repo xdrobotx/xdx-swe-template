@@ -1,0 +1,1 @@
+# Design Document: Collaborator Agent Extension

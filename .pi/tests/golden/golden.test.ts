@@ -157,6 +157,50 @@ describe("Golden: Error Output", () => {
   });
 });
 
+// ─── Golden: Software Engineer ──────────────────────────────────────────────
+
+describe("Golden: Software Engineer", () => {
+  let output: string;
+
+  before(() => {
+    const content = loadFixture("software-engineer-output.jsonl");
+    const messages = parseJsonl(content.split("\n"));
+    output = getFinalOutput(messages);
+  });
+
+  it("has markdown structure (## sections)", () => {
+    const sections = output.match(/^##/gm) || [];
+    assert.ok(sections.length >= 4, `Expected ≥4 sections, found ${sections.length}`);
+  });
+
+  it("has module breakdown section", () => {
+    assert.ok(output.includes("Module Breakdown"), "Should have module breakdown");
+  });
+
+  it("has architecture diagram (mermaid)", () => {
+    assert.ok(output.includes("mermaid"), "Should have mermaid diagram");
+    assert.ok(output.includes("graph TD"), "Should have graph TD");
+  });
+
+  it("has requirements traceability", () => {
+    assert.ok(output.includes("Requirements Traceability"), "Should have traceability section");
+    assert.ok(output.includes("REQ-001"), "Should reference requirements");
+  });
+
+  it("has implementation notes", () => {
+    assert.ok(output.includes("Implementation Notes"), "Should have implementation notes");
+  });
+
+  it("has traceability references", () => {
+    assert.ok(output.includes("Requirements Traceability"), "Should have traceability section");
+    assert.ok(output.includes("REQ-001"), "Should reference requirements");
+  });
+
+  it("output is substantial (>500 chars)", () => {
+    assert.ok(output.length > 500, `Output should be substantial, got ${output.length} chars`);
+  });
+});
+
 // ─── Golden: Aborted Output ─────────────────────────────────────────────────
 
 describe("Golden: Aborted Output", () => {

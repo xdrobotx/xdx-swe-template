@@ -277,6 +277,56 @@ describe("getDisplayItems from fixtures", () => {
   });
 });
 
+// ─── Software Engineer fixture ──────────────────────────────────────────────
+
+describe("parseSoftwareEngineer", () => {
+  let result: { messages: Message[]; usage: SubagentResult["usage"]; stopReason?: string };
+
+  before(() => {
+    const content = loadFixture("software-engineer-output.jsonl");
+    const lines = content.split("\n");
+    result = parseJsonl(lines);
+  });
+
+  it("parses messages successfully", () => {
+    assert.ok(result.messages.length > 0, "Should have parsed messages");
+  });
+
+  it("has assistant messages", () => {
+    const assistantMsgs = result.messages.filter(m => m.role === "assistant");
+    assert.ok(assistantMsgs.length > 0, "Should have assistant messages");
+  });
+
+  it("produces final output", () => {
+    const output = getFinalOutput(result.messages);
+    assert.ok(output.length > 0, "Should have final output");
+    assert.ok(output.includes("Software Detailed Design"), "Output should contain SDD topic");
+  });
+
+  it("includes module breakdown", () => {
+    const output = getFinalOutput(result.messages);
+    assert.ok(output.includes("## Module Breakdown"), "Output should have module breakdown");
+    assert.ok(output.includes("AuthCore"), "Output should reference modules");
+  });
+
+  it("includes mermaid diagram", () => {
+    const output = getFinalOutput(result.messages);
+    assert.ok(output.includes("mermaid"), "Output should have mermaid diagram");
+    assert.ok(output.includes("graph TD"), "Output should have graph TD");
+  });
+
+  it("includes traceability matrix", () => {
+    const output = getFinalOutput(result.messages);
+    assert.ok(output.includes("## Requirements Traceability"), "Output should have traceability");
+    assert.ok(output.includes("REQ-001"), "Output should reference requirements");
+  });
+
+  it("includes implementation notes", () => {
+    const output = getFinalOutput(result.messages);
+    assert.ok(output.includes("## Implementation Notes"), "Output should have implementation notes");
+  });
+});
+
 // ─── Format usage from fixture ──────────────────────────────────────────────
 
 describe("formatUsage from fixture", () => {

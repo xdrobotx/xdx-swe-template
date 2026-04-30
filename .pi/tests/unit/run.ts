@@ -16,7 +16,20 @@ import * as process from "node:process";
 const testDir = path.join(import.meta.dirname);
 const testFiles = process.argv[2]
   ? [`${process.argv[2]}.test.ts`]
-  : ["result-renderer.test.ts", "subagent-runner.test.ts", "system-prompts.test.ts"];
+  : [
+      "result-renderer.test.ts",
+      "subagent-runner.test.ts",
+      "system-prompts.test.ts",
+      "swe-traceability.test.ts",
+      "swe-skill-manager.test.ts",
+      "swe-design-generator.test.ts",
+      "swe-implementation.test.ts",
+      "swe-tdd-workflow.test.ts",
+      "swe-code-reviewer.test.ts",
+      "swe-refactoring.test.ts",
+      "swe-build-proposer.test.ts",
+      "swe-language-tools.test.ts",
+    ];
 
 let failed = 0;
 let passed = 0;

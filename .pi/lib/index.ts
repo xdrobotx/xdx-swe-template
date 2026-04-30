@@ -25,6 +25,19 @@ import {
   type RenderOptions,
   type PromptBuilderOptions,
 } from "../lib";
+
+// Software Engineer lib (SWE extensions)
+import {
+  generateTraceabilityMatrix,
+  proposeSkills,
+  generateSDD,
+  createImplementationPlan,
+  generateTDDWorkflow,
+  selfReview,
+  assessImpact,
+  isBuildArtifact,
+  detectProjectLanguage,
+} from "../lib";
 ```
  */
 
@@ -85,3 +98,80 @@ export {
   buildSystemPrompt,
   spawnQuickReport,
 } from "./system-prompts.ts";
+
+// ─── Software Engineer Lib (SWE extensions) ─────────────────────────────────
+
+export {
+  generateTraceabilityMatrix,
+  formatTraceabilityComment,
+  formatFileTraceabilityHeader,
+  validateTraceability,
+  formatTraceabilityMatrixMarkdown,
+} from "./swe-traceability.ts";
+
+export {
+  AVAILABLE_SKILLS,
+  proposeSkills,
+  getSkillPromptAugmentation,
+  listAvailableSkills,
+  buildSkillAugmentation,
+} from "./swe-skill-manager.ts";
+
+export {
+  generateSDD,
+  generateModuleBreakdown,
+  generateInterfaceSpecs,
+  generateArchitectureDiagram,
+  generateSequenceDiagram,
+  formatSDDMarkdown,
+} from "./swe-design-generator.ts";
+
+export {
+  createImplementationPlan,
+  generateComponentTestTemplate,
+  generateIntegrationTestTemplate,
+  generateSystemTestTemplate,
+  generateImplementationReport,
+} from "./swe-implementation.ts";
+
+export {
+  generateTDDWorkflow,
+  generateTestsFromDesign,
+  formatTDDWorkflowReport,
+  selectTDDMode,
+} from "./swe-tdd-workflow.ts";
+
+export {
+  REVIEW_CHECKLIST,
+  selfReview,
+  formatReviewReport,
+  proposeReviewEdits,
+  applyReviewEdits,
+  buildReviewDialoguePrompt,
+} from "./swe-code-reviewer.ts";
+
+export {
+  assessImpact,
+  checkGitNexusAvailability,
+  proposeRefactoring,
+  formatRefactoringReport,
+  executeRefactoring,
+} from "./swe-refactoring.ts";
+
+export {
+  BUILD_ARTIFACTS,
+  isBuildArtifact,
+  analyzeBuildNeeds,
+  generateBuildProposal,
+  formatBuildProposal,
+  applyApprovedChanges,
+} from "./swe-build-proposer.ts";
+
+export {
+  detectProjectLanguage,
+  DEV_TOOLS,
+  detectAvailableTools,
+  proposeToolchain,
+  getToolCommand,
+  formatToolchainProposal,
+} from "./swe-language-tools.ts";
